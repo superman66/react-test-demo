@@ -2,6 +2,8 @@
 * Jest 和 Enzyme 的基本介绍
 * 测试环境搭建
 * 测试脚本编写
+  * UI 组件测试
+  * Reducer 测试
 * 运行并调试
 * 参考资料
 
@@ -47,6 +49,7 @@ npm install jest enzyme babel-jest --save-dev
 上面三个是常用的配置，更多 Jest 配置见官方文档：[Jest Configuration](https://facebook.github.io/jest/docs/configuration.html)
 
 ## 测试脚本编写
+### UI 组件测试
 环境搭建好了，就可以开始动手写测试脚本了。在开始之前，先分析下 Todo 应用的组成部分。
 
 ![](https://github.com/superman66/react-test-demo/blob/master/screenshot/todo.png)
@@ -151,6 +154,7 @@ const setup = () => {
 
 #### 第四步：编写 Test Case
 这里的 Case 根据我们前面分析需要测试的点编写。
+
 **Case1：测试组件是否正常渲染**
 
 
@@ -197,10 +201,34 @@ describe('AddTodoView', () => {
 
 ![](https://github.com/superman66/react-test-demo/blob/master/screenshot/case12-test-result.png)
 
-经过上面两个 Test Case 的分析，接下来的 Case3 和 Case4 思路也是一样，具体代码见 `__test__/component/AddTodoView.spec.js`
+经过上面两个 Test Case 的分析，接下来的 Case3 和 Case4 思路也是一样，具体写法见代码： [__test__/component/AddTodoView.spec.js](https://github.com/superman66/react-test-demo/blob/master/__test__/component/AddTodoView.spec.js)，这里就不一一讲解了。
 
+### Reducer 测试
+由于 Reducer 是纯函数，因此对 Reducer 的测试非常简单，Redux 官方文档也提供了测试的例子，代码如下：
+```javascript
+import * as actions from '../../src/actions/index'
+import * as types from '../../src/constants/actionTypes'
 
+describe('actions', () => {
+  it('should create an action to add a todo', () => {
+    const text = 'Finish docs'
+    const expectedAction = {
+      type: types.ADD_TODO,
+      text
+    }
+    expect(actions.addTodo(text)).toEqual(expectedAction)
+  })
+})
 
+```
+
+## 调试及测试覆盖率报告
+在运行测试脚本过程，`Jest` 的错误提示信息友好，通过错误信息一般都能找到问题的所在。
+同时 `Jest` 还提供了生成测试覆盖率报告的命令，只需要添加上 `--coverage` 这个参数既可生成。不仅会在终端中显示：
+
+![](https://github.com/superman66/react-test-demo/blob/master/screenshot/coverage-report.png)
+
+而且还会在项目中生成 `coverage` 文件夹，非常方便。
 # 资料
 * [使用jest+enzyme进行react项目测试](http://echizen.github.io/tech/2017/02-12-jest-enzyme-method)
 * [聊一聊前端自动化测试](https://github.com/tmallfe/tmallfe.github.io/issues/37)

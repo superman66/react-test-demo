@@ -49,7 +49,7 @@ npm install jest enzyme babel-jest --save-dev
 ## 测试脚本编写
 环境搭建好了，就可以开始动手写测试脚本了。在开始之前，先分析下 Todo 应用的组成部分。
 
-[](./screenshot/todo.png)
+![](https://github.com/superman66/react-test-demo/blob/master/screenshot/todo.png)
 
 应用主体结构如下 `src/component/App.js`：
 ```javascript
@@ -174,7 +174,8 @@ describe('AddTodoView', () => {
 })
 ```
 写完第一个测试用例之后，我们可以运行看看测试的效果。在 Terminal 中输入 `npm run test`,效果如下:
-[](./screenshot/case1-test-result.png)
+
+![](./screenshot/case1-test-result.png)
 
 **Case2: 输入内容并敲下回车键，测试组件调用props的方法**
 
@@ -199,7 +200,8 @@ describe('AddTodoView', () => {
 * 使用 `Enzyme` 提供的 `.simulate(’keyup‘, mockEvent)` 来模拟点击事件,这里的 `keyup` 会自动转换成 React 组件中的 `onKeyUp` 并调用。
 
 我们再运行 `npm run test` 看看测试效果：
-[](./screenshot/case12-test-result.png)
+
+![](./screenshot/case12-test-result.png)
 
 经过上面两个 Test Case 的分析，接下来的 Case3 和 Case4 思路也是一样，具体代码见 `__test__/component/AddTodoView.spec.js`
 

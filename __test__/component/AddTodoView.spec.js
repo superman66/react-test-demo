@@ -7,7 +7,6 @@ const setup = () => {
   const props = {
     // Jest 提供的mock 函数
     onAddClick: jest.fn( (e) => {
-      console.log('onAddClikc' + e);
     })
   }
 
@@ -47,7 +46,7 @@ describe('AddTodoView', () => {
   })*/
 
   // case3
-  // 没有熟人并敲下回车键，测试组件没有调用props的方法
+  // 没有输入内容并敲下回车键，测试组件没有调用props的方法
     it('When the Enter key was pressed without text, onAddClick() shoule not be called', () => {
     // mock input 输入和 Enter事件
     const mockEvent = {
@@ -60,5 +59,19 @@ describe('AddTodoView', () => {
     wrapper.find('input').simulate('keyup',mockEvent)
     // 判断 props.onAddClick 是否被调用
     expect(props.onAddClick).not.toBeCalled()
+  })
+
+  // case4
+  // 创建完成后，input框被晴空
+  it('input value should be empty when todo is created', () => {
+    const mockEvent = {
+      keyCode: 13, // enter 事件
+      target: {
+        value: 'Test'
+      }
+    }
+    // 通过 Enzyme 提供的 simulate api 模拟 DOM 事件
+    wrapper.find('input').simulate('keyup',mockEvent)
+    expect(mockEvent.target.value === '')
   })
 })

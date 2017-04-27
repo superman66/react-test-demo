@@ -76,12 +76,6 @@ class App extends Component {
 
 其中 `<App/>` 是 UI 组件，`<AddTodo />` 和 `<VisibleTodoList />` 是智能组件，我们需要找到智能组件所对应的 UI 组件 `<AddTodoView/>` 和 `<TodoList/>`。
 
-`<App/>` 的功能很简单，只需要保持能正常渲染即可，因此我们对该组件的测试点也就只要一个：正常创建了 `section.todoapp` 节点。
-因此 `<App/>` 的测试脚本 `App.spec.js`：
-
-```javascript
-
-```
 
 `<AddTodoView/>` 就是一个 `Input` 输入框，接受文字输入，敲下回车键，创建一个 Todo。代码如下 `src/component/AddTodoView.js`：
 
@@ -175,7 +169,7 @@ describe('AddTodoView', () => {
 ```
 写完第一个测试用例之后，我们可以运行看看测试的效果。在 Terminal 中输入 `npm run test`,效果如下:
 
-![](./screenshot/case1-test-result.png)
+![](https://github.com/superman66/react-test-demo/blob/master/screenshot/case1-test-result.png)
 
 **Case2: 输入内容并敲下回车键，测试组件调用props的方法**
 
@@ -201,7 +195,7 @@ describe('AddTodoView', () => {
 
 我们再运行 `npm run test` 看看测试效果：
 
-![](./screenshot/case12-test-result.png)
+![](https://github.com/superman66/react-test-demo/blob/master/screenshot/case12-test-result.png)
 
 经过上面两个 Test Case 的分析，接下来的 Case3 和 Case4 思路也是一样，具体代码见 `__test__/component/AddTodoView.spec.js`
 

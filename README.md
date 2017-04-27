@@ -1,4 +1,4 @@
-# 基于 Jest + Enzyme 的 React 应用测试
+# 基于 Jest + Enzyme 的 React 单元测试
 * Jest 和 Enzyme 的基本介绍
 * 测试环境搭建
 * 测试脚本编写

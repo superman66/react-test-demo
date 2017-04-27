@@ -20,7 +20,7 @@ describe('Todo', () => {
   const { props, wrapper } = setup()
 
   // 通过 input 是否存在来判断 Todo组件是否被渲染
-  it('Todo item should be render', () => {
+  it('Todo item should  render', () => {
     expect(wrapper.find('input').exists())
   })
 
@@ -33,7 +33,7 @@ describe('Todo', () => {
     expect(props.onClick).toBeCalled()
   })
 
-  it('the item should be remove when click remove button', () => {
+  it('the item should remove when click remove button', () => {
      const mockEvent = {
       key: 'Click',
     }

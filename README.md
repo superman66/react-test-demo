@@ -206,21 +206,71 @@ describe('AddTodoView', () => {
 ### Reducer 测试
 由于 Reducer 是纯函数，因此对 Reducer 的测试非常简单，Redux 官方文档也提供了测试的例子，代码如下：
 ```javascript
-import * as actions from '../../src/actions/index'
-import * as types from '../../src/constants/actionTypes'
+import reducer from '../../reducers/todos'
+import * as types from '../../constants/ActionTypes'
 
-describe('actions', () => {
-  it('should create an action to add a todo', () => {
-    const text = 'Finish docs'
-    const expectedAction = {
-      type: types.ADD_TODO,
-      text
-    }
-    expect(actions.addTodo(text)).toEqual(expectedAction)
+describe('todos reducer', () => {
+  it('should return the initial state', () => {
+    expect(
+      reducer(undefined, {})
+    ).toEqual([
+      {
+        text: 'Use Redux',
+        completed: false,
+        id: 0
+      }
+    ])
+  })
+
+  it('should handle ADD_TODO', () => {
+    expect(
+      reducer([], {
+        type: types.ADD_TODO,
+        text: 'Run the tests'
+      })
+    ).toEqual(
+      [
+        {
+          text: 'Run the tests',
+          completed: false,
+          id: 0
+        }
+      ]
+    )
+
+    expect(
+      reducer(
+        [
+          {
+            text: 'Use Redux',
+            completed: false,
+            id: 0
+          }
+        ],
+        {
+          type: types.ADD_TODO,
+          text: 'Run the tests'
+        }
+      )
+    ).toEqual(
+      [
+        {
+          text: 'Run the tests',
+          completed: false,
+          id: 1
+        },
+        {
+          text: 'Use Redux',
+          completed: false,
+          id: 0
+        }
+      ]
+    )
   })
 })
 
 ```
+更多关于 Redux 的测试可以看官网提供的例子：[编写测试-Redux文档](http://cn.redux.js.org/docs/recipes/WritingTests.html)
 
 ## 调试及测试覆盖率报告
 在运行测试脚本过程，`Jest` 的错误提示信息友好，通过错误信息一般都能找到问题的所在。

@@ -21,7 +21,7 @@ describe('Todo', () => {
 
   // 通过 input 是否存在来判断 Todo组件是否被渲染
   it('Todo item should  render', () => {
-    expect(wrapper.find('input').exists())
+    expect(wrapper.find('input').length).toBe(1)
   })
 
   // 当点击 单选按钮，onClick 方法应该被调用
